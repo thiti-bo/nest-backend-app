@@ -1,5 +1,5 @@
 import { StaffService } from './staff.service';
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 
 @Controller('staff')
 export class StaffController {
@@ -13,5 +13,15 @@ export class StaffController {
   @Get('sql')
   async findAll2() {
     return await this.staffService.findAll2();
+  }
+
+  @Get('paginate')
+  async findAllWithPagination(@Query() query: any) {
+    const staff = await this.staffService.findAllWithPagination(query);
+    const total = await this.staffService.getTotal();
+    return {
+      total: total,
+      data: staff,
+    };
   }
 }
