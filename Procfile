@@ -1,1 +1,1 @@
-web: git commit -am "make it better"npm run start:prod
+web: npm run start:prod
